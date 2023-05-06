@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { AppService } from './app.service';
 
 @Component({
   selector: 'app-root',
@@ -6,5 +7,13 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
+  constructor(public appService: AppService) {
+  }
+  isApiResponseVisible = false;
   title = 'angular-ssr';
+  helloWorld$ = this.appService.callSpringBootBackend();
+
+  showApiResponse(): void {
+    this.isApiResponseVisible = true;
+  }
 }
