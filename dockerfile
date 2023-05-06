@@ -14,6 +14,4 @@ RUN node_modules/.bin/ng build --configuration production
 
 RUN node_modules/.bin/ng run angular-ssr:server:production
 
-EXPOSE 80
-
 CMD ["node", "dist/angular-ssr/server/main.js"]
