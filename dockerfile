@@ -1,17 +1,21 @@
-FROM node:18-alpine
-
-RUN mkdir -p /app
-
+# Stage 1: Build the Angular app
+FROM node:18 as build
 WORKDIR /app
 
-COPY ./package.json /app/
+COPY package.json package-lock.json ./
+RUN npm ci
 
-RUN npm install
+COPY . .
+RUN npm run build:ssr
 
-COPY . /app
+# Stage 2: Set up the server
+FROM node:18 as serve
+WORKDIR /app
 
-RUN node_modules/.bin/ng build --configuration production
+COPY --from=build /app/dist ./dist
 
-RUN node_modules/.bin/ng run angular-ssr:server:production
+RUN npm install -g http-server
 
-CMD ["node", "dist/angular-ssr/server/main.js"]
+EXPOSE 8080
+
+CMD [ "http-server", "-p", "8080", "dist/angular-ssr/browser" ]
