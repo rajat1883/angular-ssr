@@ -18,5 +18,4 @@ RUN npm install -g http-server
 
 EXPOSE 8080
 
-# Start the Express server
-CMD ["npm", "run", "serve:ssr"]
+CMD [ "http-server", "-p", "8080", "dist/angular-ssr/browser" ]
