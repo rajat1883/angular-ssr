@@ -10,6 +10,7 @@
     "dev:ssr": "ng run angular-ssr:serve-ssr --proxy-config proxy.config.json",
     "serve:ssr": "node dist/angular-ssr/server/main.js",
     "build:ssr": "ng build && ng run angular-ssr:server",
+    "build:ssr:production": "ng build --configuration production && ng run angular-ssr:server:production",
     "prerender": "ng run angular-ssr:prerender"
   },
   "private": true,
