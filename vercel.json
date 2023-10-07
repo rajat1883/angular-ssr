@@ -1,8 +1,5 @@
 {
   "version": 2,
-  "builds": [
-    { "src": "package.json", "use": "@vercel/node" }
-  ],
   "routes": [
     { "src": "/(.*\\..+)$", "dest": "/dist/angular-ssr/browser/$1" },
     { "src": "/.*", "dest": "/dist/angular-ssr/browser/index.html" }
